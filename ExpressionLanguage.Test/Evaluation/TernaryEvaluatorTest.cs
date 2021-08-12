@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Fluend.ExpressionLanguage;
 using FluentAssertions;
 using NUnit.Framework;
 

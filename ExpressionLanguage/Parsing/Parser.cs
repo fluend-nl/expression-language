@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Fluend.ExpressionLanguage.Exceptions;
 using Fluend.ExpressionLanguage.Lexing;
 using Fluend.ExpressionLanguage.Parsing.Nodes;

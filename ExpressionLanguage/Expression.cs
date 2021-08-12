@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fluend.ExpressionLanguage.Evaluation;
@@ -9,61 +10,37 @@ namespace Fluend.ExpressionLanguage
 {
     public static class Expression
     {
-        public static TokenStream Tokenize(string expression)
-        {
-            return new Lexer().Tokenize(expression);
-        }
-
-        public static Node Parse(TokenStream stream, IList<string> functions, IList<string> names)
-        {
-            return new Parser(functions).Parse(stream, names);
-        }
-        
-        public static Node Lint(TokenStream stream, IList<string> functions, IList<string> names)
-        {
-            return new Parser(functions).Lint(stream, names);
-        }
-
-        public static EvaluationResult Evaluate(Node parsed, ExpressiveFunctionSet functions, IDictionary<string, object> variables)
-        {
-            var evaluator = new Evaluator(functions);
-            return evaluator.Evaluate(parsed, variables);
-        }
-      
         public static EvaluationResult Run(string expression)
         {
-            var tokens = Tokenize(expression);
-            var parsed = Parse(tokens, 
-                new List<string>(),
-                new List<string>());
-
-            return Evaluate(parsed, new ExpressiveFunctionSet(),
+            return Run(expression, 
+                new ExpressiveFunctionSet(),
                 new Dictionary<string, object>());
         }
         
         public static EvaluationResult Run(string expression, ExpressiveFunctionSet functions)
         {
-            var tokens = Tokenize(expression);
-            var parsed = Parse(tokens, 
-                functions.GetFunctionNames().ToList(),
-                new List<string>());
-
-            return Evaluate(parsed, functions, new Dictionary<string, object>());
+            return Run(expression, functions, new Dictionary<string, object>());
         }
         
         public static EvaluationResult Run(string expression, ExpressiveFunctionSet functions, IDictionary<string, object> variables)
         {
-            var tokens = Tokenize(expression);
-            var parsed = Parse(tokens, 
-                functions.GetFunctionNames().ToList(),
-                variables.Keys.ToList());
+            EvaluationResult result = new();
+            
+            try
+            {
+                var tokens = new Lexer().Tokenize(expression);
+                var parsed = new Parser(functions.GetFunctionNames().ToList())
+                    .Parse(tokens, variables.Keys.ToList());
+                var evaluator = new Evaluator(functions);
+                return evaluator.Evaluate(parsed, variables);
+            }
+            catch (Exception exception)
+            {
+                result.Succeeded = false;
+                result.Error = exception.Message;
+            }
 
-            return Evaluate(parsed, functions, variables);
-        }
-
-        public static string ToLanguage(Node node)
-        {
-            return node.ToString();
+            return result;
         }
     }
 }

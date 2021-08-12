@@ -1,4 +1,3 @@
-using Fluend.ExpressionLanguage;
 using Fluend.ExpressionLanguage.Exceptions;
 using Fluend.ExpressionLanguage.Lexing;
 using FluentAssertions;

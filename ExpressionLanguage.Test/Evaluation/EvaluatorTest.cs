@@ -1,6 +1,4 @@
 using System;
-using System.Text;
-using Fluend.ExpressionLanguage;
 using Fluend.ExpressionLanguage.Evaluation.Functions;
 using FluentAssertions;
 using NUnit.Framework;

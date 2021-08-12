@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <PackageId>Fluend.ExpressionLanguage</PackageId>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <Authors>Lex Ruesink</Authors>
         <Company>Fluend</Company>
         <RepositoryUrl>https://github.com/fluend-nl/expression-language</RepositoryUrl>

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Fluend.ExpressionLanguage;
 using Fluend.ExpressionLanguage.Evaluation.Functions;
 using FluentAssertions;
 using NUnit.Framework;
@@ -148,11 +147,7 @@ namespace Fluend.ExpressionLanguage.Test.Evaluation
         public void It_Can_Handle_Variables_In_Numeric_Ranges()
         {
             var expression = "0..a";
-            var function = new ExpressiveFunction<Func<double, double>>(
-                "foo", d => d * 2);
             var functions = new ExpressiveFunctionSet();
-            functions.Add(function);
-            
             var result = Expression.Run(expression,
                 functions,
                 new Dictionary<string, object>
@@ -162,6 +157,17 @@ namespace Fluend.ExpressionLanguage.Test.Evaluation
 
             result.Succeeded.Should().Be(true);
             ((List<object?>) result.Value!).Count.Should().Be(10);
+        }
+        
+        [Test]
+        public void It_Reports_An_Error_If_A_Defined_Variable_Is_Not_Given()
+        {
+            var expression = "a";
+            
+            var result = Expression.Run(expression);
+
+            result.Succeeded.Should().Be(false);
+            result.Error.Should().Be("The variable 'a' does not exist. Position: 1, a");
         }
     }
 }

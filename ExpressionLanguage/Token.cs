@@ -1,5 +1,3 @@
-using System;
-
 namespace Fluend.ExpressionLanguage
 {
     public enum TokenType
