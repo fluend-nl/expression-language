@@ -12,6 +12,11 @@
             It is not a line-by-line copy of the original implementation, but a real C# implementation of the language.
         </Description>
     </PropertyGroup>
+
+    <!-- Automatic versioning -->
+    <Target Name="NugetPackAutoVersioning" AfterTargets="Build">
+        <Exec Command="dotnet pack -p:PackageVersion=$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmmss&quot;)) --no-build --configuration $(Configuration) --output &quot;$(SolutionDir)nuget" />
+    </Target>
     
     <!-- SourceLink -->
     <PropertyGroup>
