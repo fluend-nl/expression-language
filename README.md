@@ -1,3 +1,4 @@
+![MIT](https://img.shields.io/badge/license-MIT-blue) [![NuGet](https://img.shields.io/nuget/v/Fluend.ExpressionLanguage)](https://www.nuget.org/packages/Fluend.ExpressionLanguage/)
 ## Summary
 This project aims to be a feature-complete implementation of the Symfony expression language ([link to Symfony documentation](https://symfony.com/doc/current/components/expression_language.html)).
 It is not a line-by-line copy of the original implementation, but a real C# implementation of the language. 
