@@ -421,13 +421,6 @@ namespace Fluend.ExpressionLanguage.Parsing
                     token = _stream.Current;
                     _stream.Next();
 
-                    // Validate the token.
-                    if (TokenType.Name != token.Type &&
-                        (TokenType.Operator != token.Type || !Lexer.Names.IsMatch(token.Value)))
-                    {
-                        throw new SyntaxErrorException($"expected name. {token.Cursor}, {_stream.Expression}");
-                    }
-
                     var arg = new ConstantNode(token.Value, ConstantType.Name);
                     var args = new ArgumentsNode();
                     GetAttrNodeType type;

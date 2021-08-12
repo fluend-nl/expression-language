@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Fluend.ExpressionLanguage;
 using Fluend.ExpressionLanguage.Evaluation.Functions;
 using FluentAssertions;
@@ -36,8 +37,7 @@ namespace Fluend.ExpressionLanguage.Test.Evaluation
         [Test]
         public void It_Handles_Very_Long_Numbers()
         {
-            var expression =
-                "333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333";
+            var expression = new string('3', 310);
             var result = Expression.Run(expression);
 
             result.Succeeded.Should().Be(true);

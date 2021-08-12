@@ -21,7 +21,7 @@ namespace Fluend.ExpressionLanguage.Evaluation
     public class Evaluator
     {
         private readonly ExpressiveFunctionSet _functions;
-        private double _tolerance = 0.000000001;
+        private double _tolerance = 1E-9;
         private TimeSpan _regexTimeout = TimeSpan.FromMilliseconds(250);
 
         public Evaluator()
@@ -88,6 +88,18 @@ namespace Fluend.ExpressionLanguage.Evaluation
                     .ToList();
             }
 
+            if (node is ConditionalNode conditionalNode)
+            {
+                var condition = EvalNode(conditionalNode.Expr1, variables);
+
+                if (condition is null or false or 0)
+                {
+                    return EvalNode(conditionalNode.Expr3, variables);
+                }
+
+                return EvalNode(conditionalNode.Expr2, variables);
+            }
+            
             if (node is NameNode nameNode)
             {
                 if (!variables.TryGetValue(nameNode.Name, out var variable))

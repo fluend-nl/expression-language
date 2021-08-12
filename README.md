@@ -3,8 +3,12 @@ This project aims to be a feature-complete implementation of the Symfony express
 It is not a line-by-line copy of the original implementation, but a real C# implementation of the language.  
 
 ## Installation
-
+You can install the library using NuGet:
+```
+dotnet add package Fluend.ExpressionLanguage
+```
 ## Examples
+
 
 ## Functions and overloading
 
