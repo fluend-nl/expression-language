@@ -1,10 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
+        <PackageId>Fluend.ExpressionLanguage</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Lex Ruesink</Authors>
+        <Company>Fluend</Company>
+        <PackageTags>Fluend;Fluent;Expression Language;ExpressionLanguage;Symfony</PackageTags>
+        <Description>
+            This project aims to be a feature-complete implementation of the Symfony expression language (https://symfony.com/doc/current/components/expression_language.html).
+            It is not a line-by-line copy of the original implementation, but a real C# implementation of the language.
+        </Description>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <TargetFramework>net5.0</TargetFramework>
         <AssemblyName>Fluend.ExpressionLanguage</AssemblyName>
         <RootNamespace>Fluend.ExpressionLanguage</RootNamespace>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
 </Project>
